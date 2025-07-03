@@ -71,7 +71,7 @@ async def scan_groups():
     cutoff_date = datetime.now(timezone.utc) - timedelta(days=days_back)
 
     async for dialog in client.iter_dialogs():
-        if dialog.is_group:
+        if dialog.is_group or dialog.is_channel:
             messages = await client.get_messages(dialog.id, limit=message_limit)
 
             for message in messages:
